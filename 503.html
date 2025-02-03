@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh_hans">
+<head>
+    <meta charset="utf-8">
+    <title>服务错误 - 503</title>
+    <style>
+        /* 复用主页面样式 */
+        body {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            margin: 0;
+            height: 100vh;
+            cursor: default; /* 默认鼠标样式 */
+        }
+        .blur-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        #error-text, h2 {
+            color: #444444;
+            font-family: 'Segoe UI';
+            margin: 20px 0;
+        }
+        .home-link {
+            text-decoration: none;
+            color: #ffcc00;
+            font-size: 1.2em;
+            border: 2px solid #ffcc00;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+        .home-link:hover {
+            background: #ffcc00;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="blur-background"></div>
+    <div class="content">
+        <h1 id="error-text"></h1>
+        <h2>你可以等一会再试试...</h2>
+        <a href="/" class="home-link">带我回去</a>
+    </div>
+
+    <!-- 复用主页面脚本 -->
+    <script>
+        // 随机背景图片
+        const backgroundImages = [
+            'https://www.helloimg.com/i/2025/01/30/679b27300a69e.jpg',
+            'https://www.helloimg.com/i/2025/02/01/679da5e2bae02.jpg',
+            'https://www.helloimg.com/i/2025/02/01/679da5e33f8b9.jpg',
+            'https://www.helloimg.com/i/2025/02/01/679da5e49e246.jpg'
+        ];
+
+        // 打字效果
+        function typeWriter(text, i, fnCallback) {
+            if (i < text.length) {
+                document.getElementById("error-text").innerHTML += text.charAt(i);
+                setTimeout(() => typeWriter(text, i + 1, fnCallback), 150);
+            }
+        }
+
+        // 页面初始化
+        window.onload = function() {
+            // 设置随机背景
+            const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+            const randomImage = backgroundImages[randomIndex];
+            document.body.style.backgroundImage = `url(${randomImage})`;
+            document.querySelector('.blur-background').style.backgroundImage = `url(${randomImage})`;
+            
+            // 启动打字效果
+            typeWriter("503 - 服务不可用 QwQ", 0, () => {
+                setTimeout(() => {
+                    document.getElementById("error-text").style.textShadow = "2px 2px 4px rgba(0,0,0,0.3)";
+                }, 500);
+            });
+        };
+    </script>
+
+    <!-- 复用鼠标特效 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ...（与主页面完全相同的鼠标特效代码）
+            // 此处直接复制主页面中从 document.addEventListener 到 animate() 的全部代码
+        });
+    </script>
+
+    <!-- 樱花特效 -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Ukenn2112/UkennWeb@3.0/index/web.js"></script>
+</body>
+</html>
